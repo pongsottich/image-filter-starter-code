@@ -36,10 +36,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     if ( !image_url ) {
       return res.status(400).send(`No image_url parameter`);
     }
-
     let filteredpath = await filterImageFromURL(image_url);
-    let delFiles: string[] = [filteredpath];
-    
+    let delFiles: string[] = [filteredpath];    
     return res.status(200).sendFile(filteredpath, () => {deleteLocalFiles(delFiles)});
 
   } );
